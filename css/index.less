@@ -1,0 +1,477 @@
+@import "reset.min.less";
+@import "animate.min.less";
+@import "swiper-3.4.2.min.less";
+
+html{
+  font-size: 100px;
+}
+html,body{
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: #F4F4F4;
+  z-index: -5;
+}
+.mainBox{
+  position: relative;
+  max-width: 640px;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+  z-index: -4;
+}
+.loadingBox,.phoneBox,.messageBox,.cubeBox,.detailBox{
+  display: none;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.loadingBox{
+  background: #000;
+  .title{
+    position: absolute;
+    width: 100%;
+    height: 1.4rem;
+    top: 50%;
+    margin-top:-2.2rem ;
+    text-align: center;
+    color: #fff;
+    letter-spacing: .04rem;
+    h1{
+      font-size: .5rem;
+      line-height: .75rem;
+      height: .75rem;
+    }
+    h2{
+      line-height: .45rem;
+      font-size: .26rem;
+      margin-top: .2rem;
+    }
+  }
+  .progress{
+    position: absolute;
+    width: 4.6rem;
+    height: .3rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -2.3rem;
+    margin-top: unit(-.3/2+1,rem);
+    background: #fff;
+    border-radius:unit(.15,rem) ;
+    .run{
+      @h:.3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: .3rem;
+      background: red;
+      transition: .3s;
+      border-radius:unit(.15,rem) ;
+      background: -webkit-linear-gradient(left bottom, #5cb85c 0%, #5cb85c 25%, #74c274 25%, #74c274 50%, #5cb85c 50%, #5cb85c 75%, #74c274 70%, #74c274 100%);
+      background:linear-gradient(left bottom, #5cb85c 0%, #5cb85c 25%, #74c274 25%, #74c274 50%, #5cb85c 50%, #5cb85c 75%, #74c274 70%, #74c274 100%);
+      background-size: unit(@h, rem) unit(@h, rem);
+      -webkit-animation: barMove 1s linear infinite both;
+      animation: barMove 1s linear infinite both;
+    }
+  }
+}
+@keyframes barMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 -.3rem; /*保证高度一样才好看*/
+  }
+}
+.phoneBox{
+  background: url("../img/zf_phoneBg.jpg") no-repeat ;
+  background-size: cover;
+  z-index: -2;
+  .header{
+    width: 2.62rem;
+    height: 1.25rem;
+    position: absolute;
+    left: 50%;
+    top: .5rem;
+    margin-left: -1.31rem;
+    img{
+      width: 100%;
+    }
+    .time{
+      display: none;
+      letter-spacing: .05rem;
+      line-height: .3rem;
+      margin-top: .1rem;
+      text-align: center;
+      color: #fff;
+      font-size: .3rem;
+    }
+  }
+  .listen{
+    position: absolute;
+    width: 5.2rem;
+    height: 3.6rem;
+    bottom: .3rem;
+    left: 50%;
+    margin-left: -2.6rem;
+    background: url("../img/zf_phoneListen.png") no-repeat;
+    background-size: 100% 100%;
+    .touch{
+      position: absolute;
+      width: 1.6rem;
+      height: 1.6rem;
+      right:-.06rem;
+      bottom: .48rem;
+      /*background:rgba(0,0,0,0.6);*/
+      z-index: 10;
+    }
+   .circle{
+     .touch;
+     box-sizing: border-box;
+     border:.03rem solid #0f0;
+     border-radius: 50%;
+     animation: circleBouncing 1s linear infinite both;
+     z-index: -1;
+   }
+  }
+  .detail{
+    width: 5.2rem;
+    height: 6.59rem;
+    position: absolute;
+    bottom:.3rem;
+    left: 50%;
+    margin-left: -2.6rem;
+    background: url("../img/zf_phoneDetail.png") no-repeat;
+    background-size: 100% 100%;
+    transform: translateY(6.89rem);
+    transition: .3s;
+    .touch{
+      position: absolute;
+      width: 1.6rem;
+      height: 1.6rem;
+      left: 50%;
+      margin-left: -.8rem;
+      bottom: .28rem;
+      z-index: 10;
+    }
+  }
+}
+@keyframes circleBouncing {
+  from{
+    transform: scale(1.2);
+  }
+  to{
+    transform: scale(0);
+  }
+}
+.messageBox{
+  background: #EAEAEA;
+  .chatRoom{
+    margin-top: .2rem;
+    transition: .3s;
+    li{
+      transition: .3s;
+      transform: translateY(1rem);
+      opacity: 0;
+      max-width: 3.6rem;
+      min-width: 2.4rem;
+      padding: .25rem;
+      margin-bottom: .4rem;
+      line-height: .4rem;
+      font-size: .26rem;
+      border-radius: .1rem;
+      position: relative;
+      img{
+        position: absolute;
+        width: .82rem;
+        height: .82rem;
+        border-radius: 50%;
+        top: 0;
+      }
+      i{
+        position: absolute;
+        width: .1rem;
+        height: .2rem;
+        top: .2rem;
+      }
+      &.student{
+        margin-left: 1.25rem;
+        float: left;
+        background: #fff;
+        border: .02rem solid #CACACA;
+        img{
+          left: -1rem;
+        }
+        i{
+          left: -.1rem;
+          background: url("../img/zf_messageArrow1.png") no-repeat;
+          background-size: 100%;
+        }
+      }
+      &.teacher{
+        margin-right: 1.25rem;
+        float: right;
+        border: .02rem solid #96b474;
+        background: #A2E45C;
+        img{
+          right: -1rem;
+        }
+        i{
+          right: -.1rem;
+          background: url("../img/zf_messageArrow2.png") no-repeat;
+          background-size: 100%;
+        }
+      }
+
+    }
+  }
+  .keyboard{
+    height: 5.16rem;
+    position: absolute;
+    transform: translateY(3.7rem);
+    transition: .3s;
+    left: 0;
+    width: 100%;
+    bottom: -.54rem;
+    background: url("../img/zf_messageKeyboard.png") no-repeat;
+    background-size: 100% 100%;
+    span{
+      display: none;
+      position: absolute;
+      line-height: .4rem;
+      height: .4rem;
+      width: 4rem;
+      font-size: .25rem;
+      top: .35rem;
+      left: .9rem;
+      overflow: hidden;
+    }
+    .submit{
+      display: none;
+      position: absolute;
+      width: 1.47rem;
+      height: .74rem;
+      background: url("../img/zf_messageChat.png") no-repeat;
+      background-size: 100% 100%;
+      right: .1rem;
+      bottom: .6rem;
+    }
+  }
+}
+.cubeBox{
+  perspective: 20rem;
+  background: url("../img/zf_cubeBg.jpg") no-repeat;
+  background-size: cover;
+  .cube{
+    @dis:5.1;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transform:scale(.6) rotateX(-30deg) rotateY(45deg);
+    transition: .3s;
+    width: unit(@dis,rem);
+    height:unit(@dis,rem);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: unit(-@dis/2,rem);
+    margin-top: unit(-@dis/2,rem);
+    li{
+      position: absolute;
+      left: 0;
+      top: 0;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    li{
+      &:nth-child(1){
+        transform: translateZ(unit(@dis/2,rem));
+      }
+      &:nth-child(2){
+        transform: translateZ(unit(-@dis/2,rem)) rotateX(180deg);
+      }
+      &:nth-child(3){
+        transform: translateX(unit(-@dis/2,rem)) rotateY(-90deg);
+      }
+      &:nth-child(4){
+        transform: translateX(unit(@dis/2,rem)) rotateY(90deg);
+      }
+      &:nth-child(5){
+        transform: translateY(unit(-@dis/2,rem)) rotateX(-90deg);
+      }
+      &:nth-child(6){
+        transform: translateY(unit(@dis/2,rem)) rotateX(90deg);
+      }
+    }
+  }
+  .tip{
+    position: absolute;
+    width: 3.94rem;
+    height: .44rem;
+    bottom: .5rem;
+    left: 50%;
+    margin-left: -3.94/2rem;
+  }
+}
+.detailBox{
+  .returnLink{
+    position: absolute;
+    width: .64rem;
+    height: .75rem;
+    right: .2rem;
+    top: .2rem;
+    background: url("../img/zf_return.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: 99;
+  }
+  .swiper-container, .swiper-slide {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Microsoft JhengHei";
+  }
+  .page1{
+    perspective: 20rem;
+    dl{
+      position: absolute;
+      width: 5.4rem;
+      height: 6.6rem;
+      left: 50%;
+      top: 50%;
+      margin-left: -2.7rem;
+      margin-top: -3.3rem;
+      transform-style: preserve-3d;
+      dt,dd{
+        height: .6rem;
+        line-height: .6rem;
+        box-sizing: border-box;
+        background: #8fbb4c;
+      }
+      dt{
+        font-size: .4rem;
+        color: yellow;
+        text-align: center;
+      }
+      dd{
+        border-top:.02rem dashed rgba(255,255,255,.3);
+        font-size: 0;
+        em,p{
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          z-index: 999;
+        }
+        em{
+          width: .36rem;
+          height: .42rem;
+          margin: 0 .15rem;
+          color: #fff;
+          font-size: .2rem;
+          font-style: normal;
+          line-height: .42rem;
+          text-align: center;
+          background: url("../img/zf_outline.png") no-repeat;
+          background-size: 100% 100%;
+        }
+        p{
+          line-height: .6rem;
+          font-size: .28rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 4.74rem;
+        }
+      }
+    }
+  }
+  .page2{
+    background: #fff9c1;
+    h2,img{
+      opacity: 0;
+    }
+    h2{
+      position: absolute;
+      line-height: 90px;
+      top: .8rem;
+      left: 0;
+      text-align: center;
+      width: 100%;
+      font-size: .6rem;
+      font-weight: normal;
+    }
+    img{
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      left: 50%;
+      top: 50%;
+      margin: -.5rem 0 0 -.5rem;
+      &:nth-last-of-type(1){
+        width: 1.32rem;
+        height: 1.7rem;
+        margin: -.85rem 0 0 -.66rem;
+      }
+    }
+  }
+  #page2{
+    h2{
+      animation: bounceInLeft 1s both;
+    }
+    img{
+      &:nth-last-of-type(1){
+        animation: shake 1s both;
+      }
+    }
+    img{
+      &:not(:nth-last-of-type(1)){
+        transition: .3s;
+        opacity: 1;
+        animation: tada 1s .3s infinite both;
+      }
+      &:nth-of-type(1) {
+        margin-top: -2.9rem;
+      }
+
+      &:nth-of-type(2) {
+        margin-top: -1.7rem;
+        margin-left: 1.5rem;
+      }
+
+      &:nth-of-type(3) {
+        margin-top: .7rem;
+        margin-left: 1.5rem;
+      }
+
+      &:nth-of-type(4) {
+        margin-top: 1.9rem;
+      }
+
+      &:nth-of-type(5) {
+        margin-top: .7rem;
+        margin-left: -2.5rem;
+      }
+
+      &:nth-of-type(6) {
+        margin-top: -1.7rem;
+        margin-left: -2.5rem;
+      }
+    }
+  }
+  .page3{
+    background: #e45454;
+  }
+  .page4{
+    background: #faca7e;
+  }
+  .page5{
+    background: #fbffe8;
+  }
+  .page6{
+    background: #5975ff;
+  }
+}
